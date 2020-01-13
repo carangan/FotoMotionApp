@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FotoMotionApp</string>
+    <string name="straight">Click To Turn Straight</string>
 </resources>
