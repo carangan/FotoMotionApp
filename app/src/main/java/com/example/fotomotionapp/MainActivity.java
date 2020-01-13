@@ -47,10 +47,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Button additionalButton = new Button(MainActivity.this);
-                additionalButton.setLayoutParams(new TableRow.LayoutParams(
-                        TableRow.LayoutParams.MATCH_PARENT,
-                        TableRow.LayoutParams.MATCH_PARENT
-                ));
 
                 if(counter % 3 == 0) {
                     currentRow = new TableRow(MainActivity.this);
@@ -92,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     private void makeDirectory(){
 
 
-        File myDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)+ getString(R.string.DirectoryName));
+        File myDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+ getString(R.string.DirectoryName));
         if(!myDir.exists()){
             myDir.mkdir();
             Toast.makeText(MainActivity.this, "Directory has been made", Toast.LENGTH_SHORT).show();
