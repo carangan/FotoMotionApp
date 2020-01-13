@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FotoMotionApp</string>
     <string name="straight">Click To Turn Straight</string>
+    <string name="DirectoryName">/FOTOMOTION_APP</string>
 </resources>

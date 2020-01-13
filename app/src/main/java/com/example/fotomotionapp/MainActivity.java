@@ -15,7 +15,6 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String directory = "/FOTOMOTION_APP";
     TableLayout myLayout;
     int counter;
 
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void makeDirectory(){
-        File myDir = new File(Environment.getExternalStorageDirectory() + directory);
+        File myDir = new File(Environment.getExternalStorageDirectory() + getString(R.string.DirectoryName));
         if(!myDir.exists()){
             myDir.mkdir();
             Toast.makeText(MainActivity.this, "Directory has been made", Toast.LENGTH_SHORT).show();
