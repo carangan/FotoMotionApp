@@ -7,21 +7,22 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/straightButton"
+        android:id="@+id/fileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="145dp"
-        android:text="@string/straight"
+        android:text="Click to open file"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Click to open file" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ur Mom Big Non-Hetero"
-        app:layout_constraintBottom_toTopOf="@+id/straightButton"
+        app:layout_constraintBottom_toTopOf="@+id/fileButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

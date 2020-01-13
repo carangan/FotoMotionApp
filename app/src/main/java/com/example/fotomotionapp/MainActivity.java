@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // get the button by finding the elements with the id of "straightButton"
-        Button straightButton = findViewById(R.id.straightButton);
+        Button straightButton = findViewById(R.id.fileButton);
 
         // set the action to be performed on click to an iClicker
         straightButton.setOnClickListener(new iClicker());
