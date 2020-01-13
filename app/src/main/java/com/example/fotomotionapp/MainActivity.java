@@ -1,9 +1,13 @@
 package com.example.fotomotionapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -17,6 +21,7 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
+    private int PERMISSION_ACCESS = 1;
     TableLayout myLayout;
     TableRow currentRow;
     int counter;
@@ -26,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        askPermission();
 
         makeDirectory();
 
@@ -85,9 +92,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //helper method that helps make the directory that will hold all the projects that the person has
     private void makeDirectory(){
-
-
         File myDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+ getString(R.string.DirectoryName));
         if(!myDir.exists()){
             myDir.mkdir();
@@ -98,4 +104,19 @@ public class MainActivity extends AppCompatActivity {
         }
         Log.e("HelloGay:", myDir.toString());
     }
+
+    //Helper method that checks to see if the person if person has accepted permissions, if not then it proceeds to ask them
+    private void askPermission(){
+        //Checks if the user has already accepted the permission
+        if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(MainActivity.this, "Thank you for accepting the permission dummy", Toast.LENGTH_SHORT).show();
+        } else{
+            //If they haven't accepted the program then it asks the person to accept it
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_ACCESS);
+        }
+    }
+
+
+
+
 }
