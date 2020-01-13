@@ -1,7 +1,9 @@
 package com.example.fotomotionapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -87,11 +89,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void makeDirectory(){
 
+        String pathName = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)+ getString(R.string.DirectoryName);
+        File myDir = new File(pathName);
 
-        File myDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+ getString(R.string.DirectoryName));
+        Log.e("HelloGay", pathName);
         if(!myDir.exists()){
-            myDir.mkdir();
-            Toast.makeText(MainActivity.this, "Directory has been made", Toast.LENGTH_SHORT).show();
+            if(myDir.mkdir()) {
+                Toast.makeText(MainActivity.this, "Directory has been made", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MainActivity.this, "Directory FAILED", Toast.LENGTH_SHORT).show();
+            }
             Log.e("PrayTheGayAway", "newagain");
         } else{
             Toast.makeText(MainActivity.this, "Directory already exists", Toast.LENGTH_SHORT).show();
