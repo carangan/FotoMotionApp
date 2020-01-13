@@ -80,16 +80,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-
-
             // notifies user about what the button really does
             Toast.makeText(MainActivity.this, "you still non-hetero lmao", Toast.LENGTH_SHORT).show();
+
         }
     }
 
     private void makeDirectory(){
-
-        String pathName = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)+ getString(R.string.DirectoryName);
+        String pathName = getExternalFilesDir(null).getPath() + getString(R.string.DirectoryName);
         File myDir = new File(pathName);
 
         Log.e("HelloGay", pathName);
@@ -99,10 +97,23 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(MainActivity.this, "Directory FAILED", Toast.LENGTH_SHORT).show();
             }
-            Log.e("PrayTheGayAway", "newagain");
         } else{
             Toast.makeText(MainActivity.this, "Directory already exists", Toast.LENGTH_SHORT).show();
         }
         Log.e("HelloGay:", myDir.toString());
+    }
+
+
+    //Helper method to help find directories on files
+    private void viewInnerFiles(File directory) {
+        Log.e("jay says", directory.getPath());
+        if(directory != null && directory.isDirectory()) {
+            for(File innerFile: directory.listFiles()) {
+                // Log.e("jay says", innerFile.getPath());
+                viewInnerFiles(innerFile);
+            }
+        } else {
+            // Log.e("jay says", "not a directory");
+        }
     }
 }
