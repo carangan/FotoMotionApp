@@ -1,7 +1,6 @@
 package com.example.fotomotionapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.Toast;
 
 import java.io.File;
@@ -17,6 +17,7 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity {
 
     TableLayout myLayout;
+    TableRow currentRow;
     int counter;
 
     //Big Boy make me happy
@@ -26,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         makeDirectory();
-
-        myLayout = findViewById(R.id.layout);
 
         final Button switchScreenButton = findViewById(R.id.switchScreenButton);
         switchScreenButton.setOnClickListener(new View.OnClickListener() {
@@ -39,21 +38,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        myLayout = findViewById(R.id.layout);
+
         Button addPanelsButton = findViewById(R.id.addPanelsButton);
-        addPanelsButton.setOnClickListener(new View.OnClickListener(){
+        addPanelsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Button additionalButton = new Button(MainActivity.this);
-                additionalButton.setText("Project: " + counter++);
 
-                additionalButton.setLayoutParams(new TableLayout.LayoutParams(
-                        TableLayout.LayoutParams.WRAP_CONTENT,
-                        TableLayout.LayoutParams.WRAP_CONTENT
+                if(counter % 3 == 0) {
+                    currentRow = new TableRow(MainActivity.this);
+                    currentRow.setLayoutParams(new TableRow.LayoutParams(
+                            TableLayout.LayoutParams.MATCH_PARENT,
+                            TableLayout.LayoutParams.MATCH_PARENT
 
-                ));
+                    ));
+                    myLayout.addView(currentRow);
+                }
 
-                myLayout.addView(additionalButton);
+                additionalButton.setText("Project: " + ++counter);
+
+                currentRow.addView(additionalButton);
+
             }
         });
 
@@ -73,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             // notifies user about what the button really does
-            Toast.makeText(MainActivity.this,"you still non-hetero lmao", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "you still non-hetero lmao", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -82,9 +89,10 @@ public class MainActivity extends AppCompatActivity {
         if(!myDir.exists()){
             myDir.mkdir();
             Toast.makeText(MainActivity.this, "Directory has been made", Toast.LENGTH_SHORT).show();
+            Log.e("PrayTheGayAway", "newagain");
         } else{
             Toast.makeText(MainActivity.this, "Directory already exists", Toast.LENGTH_SHORT).show();
         }
-        Log.e("DJL:", myDir.toString());
+        Log.e("HelloGay:", myDir.toString());
     }
 }
