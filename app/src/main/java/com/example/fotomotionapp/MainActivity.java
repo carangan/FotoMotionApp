@@ -7,12 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    ConstraintLayout myLayout;
+    TableLayout myLayout;
+    int counter;
 
     //Big Boy make me happy
     @Override
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         myLayout = findViewById(R.id.layout);
 
-        final Button switchScreenButton = (Button) findViewById(R.id.switchScreenButton);
+        final Button switchScreenButton = findViewById(R.id.switchScreenButton);
         switchScreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,10 +39,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Button additionalButton = new Button(MainActivity.this);
+                additionalButton.setText("Project: " + counter++);
 
-                additionalButton.setLayoutParams(new ConstraintLayout.LayoutParams(
-                        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
-                        ConstraintLayout.LayoutParams.WRAP_CONTENT
+                additionalButton.setLayoutParams(new TableLayout.LayoutParams(
+                        TableLayout.LayoutParams.WRAP_CONTENT,
+                        TableLayout.LayoutParams.WRAP_CONTENT
+
                 ));
 
                 myLayout.addView(additionalButton);
