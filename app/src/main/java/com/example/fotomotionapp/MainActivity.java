@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
         if(!myDir.exists()){
             myDir.mkdir();
             Toast.makeText(MainActivity.this, "Directory has been made", Toast.LENGTH_SHORT).show();
+        } else{
+            Toast.makeText(MainActivity.this, "Directory already exists", Toast.LENGTH_SHORT).show();
         }
     }
 }
