@@ -10,12 +10,9 @@ public class PaintActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_paint);
+        PaintView paintView = new PaintView(this);
+        setContentView(paintView);
 
-        TextView view = findViewById(R.id.tempText);
 
-        if(getIntent().hasExtra("com.example.fotomotionapp.buttonText")){
-            view.setText(getIntent().getExtras().getString("com.example.fotomotionapp.buttonText"));
-        }
     }
 }
