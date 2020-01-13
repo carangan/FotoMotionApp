@@ -2,6 +2,7 @@ package com.example.fotomotionapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -85,7 +86,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void makeDirectory(){
-        File myDir = new File(Environment.getExternalStorageDirectory() + getString(R.string.DirectoryName));
+
+
+        File myDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+ getString(R.string.DirectoryName));
         if(!myDir.exists()){
             myDir.mkdir();
             Toast.makeText(MainActivity.this, "Directory has been made", Toast.LENGTH_SHORT).show();
