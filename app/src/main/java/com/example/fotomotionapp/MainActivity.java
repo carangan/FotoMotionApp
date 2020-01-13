@@ -16,11 +16,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button switchScreenButton = (Button) findViewById(R.id.switchScreenButton);
+        final Button switchScreenButton = (Button) findViewById(R.id.switchScreenButton);
         switchScreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent switchScreenIntent = new Intent(getApplicationContext(), PaintActivity.class);
+                switchScreenIntent.putExtra("com.example.fotomotionapp.buttonText", switchScreenButton.getText().toString());
                 startActivity(switchScreenIntent);
             }
         });
