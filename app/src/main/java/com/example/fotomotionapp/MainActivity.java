@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //Helper method to help find directories on files
+    //Also give me the kids Karen I need tHTMEMMEMMMMMM, i'm sorry i just get mad sometimes, plz call back
     private void viewInnerFiles(File directory) {
         Log.e("jay says", directory.getPath());
         if(directory != null && directory.isDirectory()) {
