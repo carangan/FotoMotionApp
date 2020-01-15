@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
@@ -24,7 +25,7 @@ import java.security.Permission;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AddPanelDialogue.ExampleDialogListener {
 
     private int KEY_CODE = 1;
 //    TableLayout myLayout;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<AnimationProject> projectNames;
     private RecyclerViewAdapter adapter;
+    public static File directoryName;
 
     //Big Boy make me happy
     @Override
@@ -56,11 +58,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                addPanel();
+                openDialog();
+                // addPanel();
             }
         });
 
-//        final Button switchScreenButton = findViewById(R.id.switchScreenButton);
+//        final Button switchScreenButton = findViewById(R.id.);
 //        switchScreenButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -105,15 +108,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private class iClicker implements View.OnClickListener {
+    @Override
+    public void applyTexts(String projectName, String username) {
 
-        @Override
-        public void onClick(View v) {
-            // notifies user about what the button really does
-            Toast.makeText(MainActivity.this, "you still non-hetero lmao", Toast.LENGTH_SHORT).show();
+        File newProje = new File(directoryName.getPath() + "/" + projectName + ".jag");
 
+        if(!newProje.exists()) {
+            newProje.mkdir();
+            int newSize = projectNames.size() + 1;
+            projectNames.add(new AnimationProject(projectName, username));
+            adapter.notifyItemInserted(newSize);
+
+        } else {
+            Toast.makeText(this, "you still non-hetero lmao, choose new projé name", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     //Asks the user for permission to access all their data and social security
     private void askPermission(){
@@ -134,30 +144,31 @@ public class MainActivity extends AppCompatActivity {
         if(!myDir.exists()){
              myDir.mkdir();
         }
+        directoryName = myDir;
     }
 
+    //Initializes the projects, who would of thought
     private void initializeProjectNames() {
         projectNames = new ArrayList<>();
-        projectNames.add(new AnimationProject("Project 1","Jag Learning"));
-        projectNames.add(new AnimationProject("Project 2","Jag Learning"));
-        projectNames.add(new AnimationProject("Project 3","Jag Learning"));
-        projectNames.add(new AnimationProject("Project 4","Jag Learning"));
-        projectNames.add(new AnimationProject("Project 5","Jag Learning"));
+
+        //Gets all existing projects that already exist in the directory
+        for(File innerFile: directoryName.listFiles()) {
+            projectNames.add(new AnimationProject(innerFile.getName().substring(0,innerFile.getName().indexOf(".")), "User Dumbass"));
+        }
+
     }
 
+    //Initializes the UI scrolling thing, "view panel", so user can scroll or some shitaki mushrooms
     private void initializeAdapter() {
         RecyclerView recycler = findViewById(R.id.projectPanel);
         adapter = new RecyclerViewAdapter(this, projectNames);
         recycler.setAdapter(adapter);
-        recycler.setLayoutManager(new GridLayoutManager(this,3));
+        recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
 
-    private void addPanel() {
-        int newSize = projectNames.size() + 1;
-        String newProjectName = "Project " + newSize;
-
-        projectNames.add(new AnimationProject(newProjectName,"Who dis?"));
-        adapter.notifyItemInserted(newSize);
+    private void openDialog() {
+        AddPanelDialogue addPanelDialogue = new AddPanelDialogue();
+        addPanelDialogue.show(getSupportFragmentManager(), "example");
     }
 
 
@@ -167,8 +178,8 @@ public class MainActivity extends AppCompatActivity {
         Log.e("jay says", directory.getPath());
         if(directory != null && directory.isDirectory()) {
             for(File innerFile: directory.listFiles()) {
-                // Log.e("jay says", innerFile.getPath());
-                viewInnerFiles(innerFile);
+                Log.e("jay says", innerFile.getPath());
+               // viewInnerFiles(innerFile);
             }
         } else {
             // Log.e("jay says", "not a directory");
