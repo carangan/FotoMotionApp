@@ -3,6 +3,8 @@ package com.example.fotomotionapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.Context;
@@ -19,13 +21,18 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.security.Permission;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private int KEY_CODE = 1;
-    TableLayout myLayout;
-    TableRow currentRow;
-    int counter;
+//    TableLayout myLayout;
+//    TableRow currentRow;
+//    int counter;
+
+    private List<AnimationProject> projectNames;
+    private RecyclerViewAdapter adapter;
 
     //Big Boy make me happy
     @Override
@@ -37,47 +44,63 @@ public class MainActivity extends AppCompatActivity {
 
         makeDirectory();
 
-        final Button switchScreenButton = findViewById(R.id.switchScreenButton);
-        switchScreenButton.setOnClickListener(new View.OnClickListener() {
+
+        if (projectNames == null) {
+            initializeProjectNames(); // sets the current project names to the items presented
+            initializeAdapter();
+        }
+
+        Button addButton = findViewById(R.id.addPanelsButton);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View v) {
-                Intent switchScreenIntent = new Intent(getApplicationContext(), PaintActivity.class);
-                switchScreenIntent.putExtra("com.example.fotomotionapp.buttonText", switchScreenButton.getText().toString());
-                startActivity(switchScreenIntent);
+            public void onClick(View view) {
+                addPanel();
             }
         });
 
-        myLayout = findViewById(R.id.layout);
-
-        Button addPanelsButton = findViewById(R.id.addPanelsButton);
-        addPanelsButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Button additionalButton = new Button(MainActivity.this);
-
-                if(counter % 3 == 0) {
-                    currentRow = new TableRow(MainActivity.this);
-                    currentRow.setLayoutParams(new TableRow.LayoutParams(
-                            TableLayout.LayoutParams.MATCH_PARENT,
-                            TableLayout.LayoutParams.MATCH_PARENT
-
-                    ));
-                    myLayout.addView(currentRow);
-                }
-
-                additionalButton.setText("Project: " + ++counter);
-
-                currentRow.addView(additionalButton);
-
-            }
-        });
-
-        // get the button by finding the elements with the id of "straightButton"
-        Button straightButton = findViewById(R.id.fileButton);
-
-        // set the action to be performed on click to an iClicker
-        straightButton.setOnClickListener(new iClicker());
+//        final Button switchScreenButton = findViewById(R.id.switchScreenButton);
+//        switchScreenButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent switchScreenIntent = new Intent(getApplicationContext(), PaintActivity.class);
+//                switchScreenIntent.putExtra("com.example.fotomotionapp.buttonText", switchScreenButton.getText().toString());
+//                startActivity(switchScreenIntent);
+//            }
+//        });
+//
+//        myLayout = findViewById(R.id.layout);
+//
+//        Button addPanelsButton = findViewById(R.id.addPanelsButton);
+//        addPanelsButton.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                Button additionalButton = new Button(MainActivity.this);
+//
+//                if(counter % 3 == 0) {
+//                    currentRow = new TableRow(MainActivity.this);
+//                    currentRow.setLayoutParams(new TableRow.LayoutParams(
+//                            TableLayout.LayoutParams.MATCH_PARENT,
+//                            TableLayout.LayoutParams.MATCH_PARENT
+//
+//                    ));
+//                    myLayout.addView(currentRow);
+//                }
+//
+//                additionalButton.setText("Project: " + ++counter);
+//
+//                currentRow.addView(additionalButton);
+//
+//            }
+//        });
+//
+//        // get the button by finding the elements with the id of "straightButton"
+//        Button straightButton = findViewById(R.id.fileButton);
+//
+//        // set the action to be performed on click to an iClicker
+//        straightButton.setOnClickListener(new iClicker());
 
 
     }
@@ -111,6 +134,30 @@ public class MainActivity extends AppCompatActivity {
         if(!myDir.exists()){
              myDir.mkdir();
         }
+    }
+
+    private void initializeProjectNames() {
+        projectNames = new ArrayList<>();
+        projectNames.add(new AnimationProject("Project 1","Jag Learning"));
+        projectNames.add(new AnimationProject("Project 2","Jag Learning"));
+        projectNames.add(new AnimationProject("Project 3","Jag Learning"));
+        projectNames.add(new AnimationProject("Project 4","Jag Learning"));
+        projectNames.add(new AnimationProject("Project 5","Jag Learning"));
+    }
+
+    private void initializeAdapter() {
+        RecyclerView recycler = findViewById(R.id.projectPanel);
+        adapter = new RecyclerViewAdapter(this, projectNames);
+        recycler.setAdapter(adapter);
+        recycler.setLayoutManager(new GridLayoutManager(this,3));
+    }
+
+    private void addPanel() {
+        int newSize = projectNames.size() + 1;
+        String newProjectName = "Project " + newSize;
+
+        projectNames.add(new AnimationProject(newProjectName,"Who dis?"));
+        adapter.notifyItemInserted(newSize);
     }
 
 
