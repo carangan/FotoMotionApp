@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FotoMotion</string>
+    <string name="projectName">Project Name</string>
+    <string name="imageThumbnail">Image Preview</string>
+    <string name="usernameName">Username</string>
+    <string name="newProject">New Project</string>
+    <string name="ok">ok</string>
+    <string name="cancel">ok</string>
+</resources>

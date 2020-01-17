@@ -21,14 +21,14 @@
         android:scaleY="4"
         android:layout_centerInParent="true"
         android:src="@mipmap/sailormoon"
-        android:contentDescription="Project Image"
+        android:contentDescription="@string/imageThumbnail"
         />
 
     <TextView
         android:id="@+id/projectName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Project Name"
+        android:text="@string/projectName"
         android:gravity="center"
         android:textColor="#000"
         android:textSize="20sp"
@@ -41,6 +41,6 @@
         android:layout_marginTop="0dp"
         android:gravity="center"
         android:layout_below="@id/projectName"
-        android:text="Author Name" />
+        android:text="@string/usernameName" />
 
 </RelativeLayout>

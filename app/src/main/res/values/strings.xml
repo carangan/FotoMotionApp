@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">FotoMotion</string>
-    <string name="straight">Click To Turn Straight</string>
-    <string name="DirectoryName">/FOTOMOTION_APP</string>
+    <string name="straight" translatable="false">Click To Turn Straight</string>
+    <string name="DirectoryName" translatable="false">/FOTOMOTION_APP</string>
+    <string name="projectName">Project Name</string>
+    <string name="imageThumbnail">Project Thumbnail</string>
+    <string name="usernameName">Username</string>
+    <string name="newProject">New Project</string>
+    <string name="cancel">cancel</string>
+    <string name="ok">ok</string>
 </resources>

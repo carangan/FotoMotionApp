@@ -10,8 +10,8 @@ public class AnimationProject {
 
     public AnimationProject() {
         imageName = "";
-        projectName = "Project Title";
-        authorName = "Author Name";
+        projectName = "Project Name";
+        authorName = "User Name";
     }
 
     public AnimationProject(String project, String author) {
