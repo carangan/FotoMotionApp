@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -20,9 +21,29 @@ public class PaintView extends View {
     private int brushColor = DEF_COLOR;
     private float strokeSize = DEF_STROKE_SIZE;
 
+
+    // constructors - needs three constructors in order to work with xml files for whatever reason
+
     public PaintView(Context context) {
         super(context);
 
+        initBrush();
+    }
+
+    public PaintView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+
+        initBrush();
+    }
+
+    public PaintView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+
+        initBrush();
+    }
+
+    // initializes brush properties
+    private void initBrush() {
         brush.setAntiAlias(true);
         brush.setColor(brushColor);
         brush.setStyle(Paint.Style.STROKE);
