@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
@@ -26,6 +27,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private List<AnimationProject> projectNames;
     private Context context;
+    private FragmentManager supportManager;
 
     private RecyclerViewAdapter() {
 
@@ -40,6 +42,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         this.context = context;
         this.projectNames = projectNames;
+    }
+
+    public void setFragmentManager(FragmentManager sendIn) {
+        supportManager = sendIn;
     }
 
     @NonNull
@@ -85,10 +91,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public boolean onLongClick(View v) {
                 Log.d(TAG,"Clicked remove option");
 
-                remove(currentProject.getProjectName());
-                projectNames.remove(position);
-                // notifyItemRemoved(position);
-                notifyDataSetChanged();
+                ProjectOptionsFragment optionsFragment = new ProjectOptionsFragment();
+
+                optionsFragment.show(supportManager, "optionsFragment");
+//                remove(currentProject.getProjectName());
+//                projectNames.remove(position);
+//                // notifyItemRemoved(position);
+//                notifyDataSetChanged();
                 return true;
             }
         });

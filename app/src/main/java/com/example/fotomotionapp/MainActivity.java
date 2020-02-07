@@ -3,6 +3,7 @@ package com.example.fotomotionapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements AddPanelDialogue.
                 // addPanel();
             }
         });
+
+        // Main Activity - here
 
 //        final Button switchScreenButton = findViewById(R.id.);
 //        switchScreenButton.setOnClickListener(new View.OnClickListener() {
@@ -155,13 +158,13 @@ public class MainActivity extends AppCompatActivity implements AddPanelDialogue.
         for(File innerFile: directoryName.listFiles()) {
             projectNames.add(new AnimationProject(innerFile.getName().substring(0,innerFile.getName().indexOf(".")), "User Dumbass"));
         }
-
     }
 
     //Initializes the UI scrolling thing, "view panel", so user can scroll or some shitaki mushrooms
     private void initializeAdapter() {
         RecyclerView recycler = findViewById(R.id.projectPanel);
         adapter = new RecyclerViewAdapter(this, projectNames);
+        // adapter.setFragmentManager(getSupportFragmentManager());
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
