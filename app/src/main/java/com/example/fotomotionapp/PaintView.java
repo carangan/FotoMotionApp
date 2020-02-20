@@ -20,6 +20,7 @@ public class PaintView extends View {
     private Paint brush = new Paint();
 
     private int brushColor = DEF_COLOR;
+    private int backgroundColor = Color.WHITE;
     private float strokeSize = DEF_STROKE_SIZE;
 
 
@@ -73,6 +74,9 @@ public class PaintView extends View {
 
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
+
+        // canvas.drawRect(CANVAS_RECT, BACKGROUND);
+        canvas.drawColor(backgroundColor);
 
         canvas.drawPath(path, brush);
     }

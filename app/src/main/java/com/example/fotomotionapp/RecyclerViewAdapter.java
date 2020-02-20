@@ -102,7 +102,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         });
 
-        holder.projectPreview.setImageResource(Math.random() * 10 < 5? R.mipmap.spaghetti_round: R.mipmap.susan_round);
+        holder.projectPreview.setImageResource(R.mipmap.susan_round);
+//        holder.projectPreview.setImageResource(Math.random() * 10 < 5? R.mipmap.spaghetti_round: R.mipmap.susan_round);
 
 //        holder.menuOptions.setOnClickListener(new View.OnClickListener() {
 //            @Override
