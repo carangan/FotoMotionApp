@@ -72,6 +72,11 @@ public class PaintView extends View {
         return false;
     }
 
+    public void resetDrawing() {
+        path = new Path();
+        invalidate();
+    }
+
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
 

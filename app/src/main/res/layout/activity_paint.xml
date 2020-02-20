@@ -7,9 +7,17 @@
 
     <Button
         android:id="@+id/paint_saveButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
+        />
+
+    <Button
+        android:id="@+id/paint_clearButton"
+        android:text="Clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/paint_saveButton"
         />
 
     <com.example.fotomotionapp.PaintView

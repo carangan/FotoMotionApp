@@ -26,6 +26,21 @@ public class PaintActivity extends AppCompatActivity {
         paintView = findViewById(R.id.paint_paintView);
 
         buildSaveButton();
+        buildClearButton();
+    }
+
+    private void buildClearButton() {
+        Button clearButton = findViewById(R.id.paint_clearButton);
+
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                clear();
+            }
+        });
+    }
+
+    private void clear() {
+        paintView.resetDrawing();
     }
 
     // sets the properties of the save button on the paint screen
@@ -51,7 +66,7 @@ public class PaintActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        save();
+//        save();
     }
 
     // pre: none
