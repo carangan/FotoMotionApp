@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,7 +13,7 @@ import android.view.View;
 
 public class PaintView extends View {
 
-    private final static int DEF_COLOR = Color.BLACK;
+    private final static int DEF_COLOR = Color.RED;
     private static final float DEF_STROKE_SIZE = 8f;
 
     private Path path = new Path();
@@ -71,6 +72,8 @@ public class PaintView extends View {
     }
 
     protected void onDraw(Canvas canvas){
+        super.onDraw(canvas);
+
         canvas.drawPath(path, brush);
     }
 }

@@ -2,6 +2,7 @@ package com.example.fotomotionapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -57,7 +58,22 @@ public class PaintActivity extends AppCompatActivity {
     // post: returns a saved instance of the current canvas
     private void save() {
 
-        Toast.makeText(this, "Bruh moment, save not implemented", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "Bruh moment, save not implemented", Toast.LENGTH_SHORT).show();
         // TODO implement save, add parameters as necessary
+
+        // uses deprecated methods
+        paintView.setDrawingCacheEnabled(true);
+        String imageProcessMessage = MediaStore.Images.Media.insertImage(
+                getContentResolver(),
+                paintView.getDrawingCache(),
+                UUID.randomUUID().toString() + ".png",
+                "drawing"
+        );
+
+        if(imageProcessMessage != null) {
+            Toast.makeText(this, "I just shid my pant", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Fuc u", Toast.LENGTH_SHORT).show();
+        }
     }
 }
