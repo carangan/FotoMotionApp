@@ -80,7 +80,6 @@ public class PaintView extends View {
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
 
-        // canvas.drawRect(CANVAS_RECT, BACKGROUND);
         canvas.drawColor(backgroundColor);
 
         canvas.drawPath(path, brush);

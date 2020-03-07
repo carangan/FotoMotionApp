@@ -28,6 +28,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AddPanelDialogue.ExampleDialogListener {
 
+    private static String TAG = "MainActivity";
     private int KEY_CODE = 1;
 //    TableLayout myLayout;
 //    TableRow currentRow;
@@ -148,6 +149,8 @@ public class MainActivity extends AppCompatActivity implements AddPanelDialogue.
              myDir.mkdir();
         }
         directoryName = myDir;
+
+        Log.d(TAG, "makeDirectory: " + directoryName);
     }
 
     //Initializes the projects, who would of thought

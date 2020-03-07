@@ -91,9 +91,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public boolean onLongClick(View v) {
                 Log.d(TAG,"Clicked remove option");
 
-                ProjectOptionsFragment optionsFragment = new ProjectOptionsFragment();
+                Toast.makeText(context, "delete this file", Toast.LENGTH_SHORT).show();
 
-                optionsFragment.show(supportManager, "optionsFragment");
 //                remove(currentProject.getProjectName());
 //                projectNames.remove(position);
 //                // notifyItemRemoved(position);
